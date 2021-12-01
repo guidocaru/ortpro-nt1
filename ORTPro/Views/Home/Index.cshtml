@@ -2,7 +2,42 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="hello">
+    <header class="masthead">
+        <div class="container-fluid position-relative">
+            <div class="row justify-content-center">
+                <div class="col-xl-6">
+                    <div class="text-center text-white">
+                        <h1 class="mb-1">Bienvenido a ORTPro!</h1>
+                        <h4 class="mb-5">Conectamos necesidades con soluciones</h4>
+                        <p>
+                            Encontrá un profesional de manera rápida, confiable y segura
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 </div>
+
+<style>
+    header.masthead {
+        position: relative;
+        background-color: #343a40;
+        background: url("https://policyoptions.irpp.org/wp-content/uploads/sites/2/2019/03/WordPress-Image-1.jpg") no-repeat center center;
+        background-size: cover;
+        padding-top: 8rem;
+        padding-bottom: 8rem;
+    }
+
+        header.masthead:before {
+            content: "";
+            position: absolute;
+            background-color: #1c375e;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0.5;
+        }
+</style>

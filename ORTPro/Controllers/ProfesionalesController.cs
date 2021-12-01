@@ -54,7 +54,7 @@ namespace ORTPro.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,FechaInscripto,Servicio,Barrio")] Profesional profesional)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,Servicio,Barrio,Puntuacion")] Profesional profesional)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace ORTPro.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,FechaInscripto,Servicio,Barrio")] Profesional profesional)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Servicio,Barrio,Puntuacion")] Profesional profesional)
         {
             if (id != profesional.Id)
             {

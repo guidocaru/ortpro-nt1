@@ -12,11 +12,11 @@ namespace ORTPro.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Nombre { get; set; }
-        [Display(Name = "Fecha inscripción")]
-        public DateTime FechaInscripto { get; set; }
         [EnumDataType(typeof(Servicio))]
         public Servicio Servicio { get; set; }
         [EnumDataType(typeof(Barrio))]
         public Barrio Barrio { get; set; }
+        [EnumDataType(typeof(Puntuacion))]
+        public Puntuacion Puntuacion { get; set; }
     }
 }

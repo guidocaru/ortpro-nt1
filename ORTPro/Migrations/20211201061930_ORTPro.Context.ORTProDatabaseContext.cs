@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ORTPro.Migrations
 {
@@ -14,9 +13,9 @@ namespace ORTPro.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(nullable: true),
-                    FechaInscripto = table.Column<DateTime>(nullable: false),
                     Servicio = table.Column<int>(nullable: false),
-                    Barrio = table.Column<int>(nullable: false)
+                    Barrio = table.Column<int>(nullable: false),
+                    Puntuacion = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
