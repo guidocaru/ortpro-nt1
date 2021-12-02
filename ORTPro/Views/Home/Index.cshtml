@@ -1,24 +1,53 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model ORTPro.Models.Servicio
 
-<div class="hello">
-    <header class="masthead">
-        <div class="container-fluid position-relative">
-            <div class="row justify-content-center">
-                <div class="col-xl-6">
-                    <div class="text-center text-white">
-                        <h1 class="mb-1">Bienvenido a ORTPro!</h1>
-                        <h4 class="mb-5">Conectamos necesidades con soluciones</h4>
-                        <p>
-                            Encontrá un profesional de manera rápida, confiable y segura
-                        </p>
+<div id="app">
+    <div class="hello">
+        <header class="masthead">
+            <div class="container-fluid position-relative">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6">
+                        <div class="text-center text-white">
+                            <h1 class="mb-1">Bienvenido a ORTPro!</h1>
+                            <h4 class="mb-5">Conectamos necesidades con soluciones</h4>
+                            <p>
+                                Encontrá un profesional de manera rápida, confiable y segura
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
+        <h2>¿Qué estás buscando?</h2>
+        <input class="form-control"
+               type="text"
+               list="suggestions"
+               placeholder="Ingrese un servicio" />
+        <datalist id="suggestions">
+            <option v-for="(item, key) in suggestions" :key="key">
+                {{ item }}
+            </option>
+        </datalist>
+    </div>
 </div>
+
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                suggestions: ["Gasista", "Plomero", "Cocinero", "Carpintero", "Masajista", "Electricista","Mecánico","Pedicura"]
+            },
+            methods: {
+            }
+        })
+    </script>
+}
+
 
 <style>
     header.masthead {
