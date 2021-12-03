@@ -15,6 +15,5 @@ namespace ORTPro.Models
         Flores,
         Colegiales,
         Balvanera,
-        Paternal
     }
 }

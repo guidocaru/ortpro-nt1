@@ -25,6 +25,128 @@ namespace ORTPro.Controllers
             return View(await _context.Profesionales.ToListAsync());
         }
 
+        //GET: Profesionales/Buscador
+        public async Task<IActionResult> Buscador(String nombre, int servicio, int barrio, int puntuacion) {
+            
+            IQueryable<Profesional> query = _context.Profesionales;
+
+            if (nombre == null && servicio != 0 && barrio != 0 && puntuacion != 0) {
+                query = _context.Profesionales;
+            }
+
+
+            if (nombre != null) {
+                query = query.Where(p => p.Nombre.Contains(nombre));
+            }
+
+            if (servicio != 0)
+            {
+                switch (servicio)
+                {
+                    case 1:
+                        query = query.Where(p => p.Servicio == Servicio.Gasista);
+                        break;
+
+                    case 2:
+                        query = query.Where(p => p.Servicio == Servicio.Plomero);
+                        break;
+
+                    case 3:
+                        query = query.Where(p => p.Servicio == Servicio.Cocinero);
+                        break;
+
+                    case 4:
+                        query = query.Where(p => p.Servicio == Servicio.Carpintero);
+                        break;
+
+                    case 5:
+                        query = query.Where(p => p.Servicio == Servicio.Masajista);
+                        break;
+
+                    case 6:
+                        query = query.Where(p => p.Servicio == Servicio.Electricista);
+                        break;
+
+                    case 7:
+                        query = query.Where(p => p.Servicio == Servicio.Mecánico);
+                        break;
+
+                    case 8:
+                        query = query.Where(p => p.Servicio == Servicio.Pedicura);
+                        break;
+                }
+            }
+
+            if (barrio != 0)
+            {
+                switch (barrio)
+                {
+                    case 1:
+                        query = query.Where(p => p.Barrio == Barrio.Recoleta);
+                        break;
+
+                    case 2:
+                        query = query.Where(p => p.Barrio == Barrio.Chacarita);
+                        break;
+
+                    case 3:
+                        query = query.Where(p => p.Barrio == Barrio.Palermo);
+                        break;
+
+                    case 4:
+                        query = query.Where(p => p.Barrio == Barrio.Caballito);
+                        break;
+
+                    case 5:
+                        query = query.Where(p => p.Barrio == Barrio.Retiro);
+                        break;
+
+                    case 6:
+                        query = query.Where(p => p.Barrio == Barrio.Flores);
+                        break;
+
+                    case 7:
+                        query = query.Where(p => p.Barrio == Barrio.Colegiales);
+                        break;
+
+                    case 8:
+                        query = query.Where(p => p.Barrio == Barrio.Balvanera);
+                        break;
+                }
+            }
+
+            if (puntuacion != 0)
+            {
+                switch (puntuacion)
+                {
+                    case 1:
+                        query = query.Where(p => p.Puntuacion == Puntuacion.uno);
+                        break;
+
+                    case 2:
+                        query = query.Where(p => p.Puntuacion == Puntuacion.dos);
+                        break;
+
+                    case 3:
+                        query = query.Where(p => p.Puntuacion == Puntuacion.tres);
+                        break;
+
+                    case 4:
+                        query = query.Where(p => p.Puntuacion == Puntuacion.cuatro); ;
+                        break;
+
+                    case 5:
+                        query = query.Where(p => p.Puntuacion == Puntuacion.cinco);
+                        break;
+                }
+            }
+
+            List<Profesional> profesionales = query.ToList();
+           
+            return View(profesionales);
+
+        }
+
         // GET: Profesionales/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -50,8 +172,6 @@ namespace ORTPro.Controllers
         }
 
         // POST: Profesionales/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nombre,Servicio,Barrio,Puntuacion")] Profesional profesional)
@@ -82,8 +202,6 @@ namespace ORTPro.Controllers
         }
 
         // POST: Profesionales/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Servicio,Barrio,Puntuacion")] Profesional profesional)

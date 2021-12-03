@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Profesional>
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<form id="buscador" class="form-inline buscadorEnBusqueda" action="/Profesionales/Buscador" method="get">
+    <div class="form-group mb-2">
+        <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Nombre">
+    </div>
+
+    <div class="form-group mb-2">
+        <select class="custom-select mr-sm-2" name="servicio" id="servicio">
+            <option disable selected>Servicio</option>
+            <option value="1">Gasista</option>
+            <option value="2">Plomero</option>
+            <option value="3">Cocinero</option>
+            <option value="4">Carpintero</option>
+            <option value="5">Masajista</option>
+            <option value="6">Electricista</option>
+            <option value="7">Mecánico</option>
+            <option value="8">Pedicura</option>
+        </select>
+    </div>
+
+    <div class="form-group mb-2">
+        <select class="custom-select mr-sm-2" name="barrio" id="barrio">
+            <option disable selected>Barrio</option>
+            <option value="1">Recoleta</option>
+            <option value="2">Chacarita</option>
+            <option value="3">Palermo</option>
+            <option value="4">Caballito</option>
+            <option value="5">Retiro</option>
+            <option value="6">Flores</option>
+            <option value="7">Colegiales</option>
+            <option value="8">Balvanera</option>
+        </select>
+    </div>
+
+
+    <div class="form-group mb-2">
+        <select class="custom-select mr-sm-2" name="puntuacion" id="puntuacion">
+            <option disable selected>Puntuación</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </div>
+
+    <a class="reload_icon" href="/Profesionales/Buscador">
+        <i class="fas fa-sync-alt"></i>
+    </a>
+
+    <button type="submit" class="form-group btn btn-primary mb-2">Buscar</button>
+
+</form>
+
+
+<div class="cuadroProfesionales">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Profesional</th>
+                    <th scope="col">Servicio</th>
+                    <th scope="col">Barrio</th>
+                    <th scope="col">Puntuación</th>
+                    <th scope="col">Perfil</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{                    
+                    var imgUrl = "https://picsum.photos/200";
+
+                    @foreach (var item in Model) {
+                        imgUrl = imgUrl + "?";
+                        <tr>
+                            <td><image src="@imgUrl" alt="foto_perfil" size=""></image></td>
+                            <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Servicio)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Barrio)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Puntuacion)</td>
+                            <td><a href="/Profesionales/Details/@item.Id">Ir a perfil</a></td>
+                        </tr>
+                    }
+
+                }
+
+
+
+            </tbody>
+        </table>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
