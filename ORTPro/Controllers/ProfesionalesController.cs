@@ -27,6 +27,7 @@ namespace ORTPro.Controllers
 
         //GET: Profesionales/Buscador
         public async Task<IActionResult> Buscador(String nombre, int servicio, int barrio, int puntuacion) {
+            //PASAR ENUMS A ENUMS
             
             IQueryable<Profesional> query = _context.Profesionales;
 
@@ -132,7 +133,7 @@ namespace ORTPro.Controllers
                         break;
 
                     case 4:
-                        query = query.Where(p => p.Puntuacion == Puntuacion.cuatro); ;
+                        query = query.Where(p => p.Puntuacion == Puntuacion.cuatro);
                         break;
 
                     case 5:

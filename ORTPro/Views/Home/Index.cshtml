@@ -21,18 +21,17 @@
             </div>
         </header>
         <h2>¿Qué estás buscando?</h2>
-        <input class="form-control"
-               type="text"
-               list="suggestions"
-               placeholder="Ingrese un servicio" />
-        <datalist id="suggestions">
-            <option v-for="(item, key) in suggestions" :key="key">
-                {{ item }}
-            </option>
-        </datalist>
+        <p>Probá nuestro buscador de profesionales</p>
+        <form id="buscador" class="form-inline buscadorEnBusqueda" action="/Profesionales/Buscador" method="get">
+            <select name="servicio" id="servicio">
+                @foreach (Servicio item in Enum.GetValues(typeof(Servicio)))
+                {
+                    <option>@item</option>
+                }
+            </select>
+            <button type="submit" class="btn btn-outline-primary">Buscar</button>
+        </form>
     </div>
-
-
 </div>
 
 @section scripts{
@@ -42,7 +41,6 @@
         let app = new Vue({
             el: '#app',
             data: {
-                suggestions: ["Gasista", "Plomero", "Cocinero", "Carpintero", "Masajista", "Electricista","Mecánico","Pedicura"]
             },
             methods: {
             }
@@ -71,4 +69,6 @@
             left: 0;
             opacity: 0.5;
         }
+
+
 </style>
