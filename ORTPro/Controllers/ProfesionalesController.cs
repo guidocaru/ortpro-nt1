@@ -27,16 +27,17 @@ namespace ORTPro.Controllers
 
         //GET: Profesionales/Buscador
         public async Task<IActionResult> Buscador(String nombre, int servicio, int barrio, int puntuacion) {
-            //PASAR ENUMS A ENUMS
-            
+             
             IQueryable<Profesional> query = _context.Profesionales;
 
-            if (nombre == null && servicio != 0 && barrio != 0 && puntuacion != 0) {
+            if (nombre == null && servicio != 0 && barrio != 0 && puntuacion != 0)
+            {
                 query = _context.Profesionales;
             }
 
 
-            if (nombre != null) {
+            if (nombre != null)
+            {
                 query = query.Where(p => p.Nombre.Contains(nombre));
             }
 
@@ -146,6 +147,24 @@ namespace ORTPro.Controllers
            
             return View(profesionales);
 
+        }
+
+        // GET: Profesionales/Perfil/5
+        public async Task<IActionResult> Perfil(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var profesional = await _context.Profesionales
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (profesional == null)
+            {
+                return NotFound();
+            }
+
+            return View(profesional);
         }
 
         // GET: Profesionales/Details/5

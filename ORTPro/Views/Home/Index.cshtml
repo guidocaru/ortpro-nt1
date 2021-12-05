@@ -22,15 +22,62 @@
         </header>
         <h2>¿Qué estás buscando?</h2>
         <p>Probá nuestro buscador de profesionales</p>
-        <form id="buscador" class="form-inline buscadorEnBusqueda" action="/Profesionales/Buscador" method="get">
-            <select name="servicio" id="servicio">
-                @foreach (Servicio item in Enum.GetValues(typeof(Servicio)))
-                {
-                    <option>@item</option>
+        <form id="buscador" action="/Profesionales/Buscador" method="get">
+
+    <div class="formulario">
+
+        <div class="form-group mb-2">
+            <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Nombre">
+        </div>
+
+        <div class="form-group mb-2">
+            <select class="custom-select mr-sm-2" name="servicio" id="servicio">
+                <option disable selected>Servicio</option>
+                @{
+                    var i = 0;
+                    @foreach (Servicio item in Enum.GetValues(typeof(Servicio)))
+                    {
+                        i++;
+                        <option value="@i">@item</option>
+                    }
                 }
             </select>
-            <button type="submit" class="btn btn-outline-primary">Buscar</button>
-        </form>
+        </div>
+
+        <div class="form-group mb-2">
+            <select class="custom-select mr-sm-2" name="barrio" id="barrio">
+                <option disable selected>Barrio</option>
+                @{
+                    var j = 0;
+                    @foreach (Barrio item in Enum.GetValues(typeof(Barrio)))
+                    {
+                        j++;
+                        <option value="@j">@item</option>
+                    }
+                }
+            </select>
+        </div>
+
+
+        <div class="form-group mb-2">
+            <select class="custom-select mr-sm-2" name="puntuacion" id="puntuacion">
+                <option disable selected>Puntuación</option>
+                @{
+                    var l = 0;
+                    @foreach (Puntuacion item in Enum.GetValues(typeof(Puntuacion)))
+                    {
+                        l++;
+                        <option value="@l">@item</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <button type="submit" class="form-group btn btn-primary mb-2">Buscar</button>
+
+    </div>
+
+</form>
     </div>
 </div>
 
@@ -70,5 +117,20 @@
             opacity: 0.5;
         }
 
+   
+    .formulario {
+        display: flex;
+        justify-content: center;
+    }
+
+    .formulario div {
+        padding: 0 10px;
+    }
+
+    img {
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+    }
 
 </style>
