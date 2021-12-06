@@ -1,126 +1,294 @@
 ﻿@model IEnumerable<Profesional>
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Buscar Profesionales";
 }
-
-
-
-<form id="buscador" action="/Profesionales/Buscador" method="get">
-
-    <div class="formulario">
-
-        <div class="form-group mb-2">
-            <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Nombre">
-        </div>
-
-        <div class="form-group mb-2">
-            <select class="custom-select mr-sm-2" name="servicio" id="servicio">
-                <option disable selected>Servicio</option>
-                @{
-                    var i = 0;
-                    @foreach (Servicio item in Enum.GetValues(typeof(Servicio)))
-                    {
-                        i++;
-                        <option value="@i">@item</option>
-                    }
-                }
-            </select>
-        </div>
-
-        <div class="form-group mb-2">
-            <select class="custom-select mr-sm-2" name="barrio" id="barrio">
-                <option disable selected>Barrio</option>
-                @{
-                    var j = 0;
-                    @foreach (Barrio item in Enum.GetValues(typeof(Barrio)))
-                    {
-                        j++;
-                        <option value="@j">@item</option>
-                    }
-                }
-            </select>
-        </div>
-
-
-        <div class="form-group mb-2">
-            <select class="custom-select mr-sm-2" name="puntuacion" id="puntuacion">
-                <option disable selected>Puntuación</option>
-                @{
-                    var l = 0;
-                    @foreach (Puntuacion item in Enum.GetValues(typeof(Puntuacion)))
-                    {
-                        l++;
-                        <option value="@l">@item</option>
-                    }
-                }
-            </select>
-        </div>
-
-        <button type="submit" class="form-group btn btn-primary mb-2">Buscar</button>
-
-    </div>    
-
-</form>
-
-<div class="cuadroProfesionales">
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col">Profesional</th>
-                <th scope="col">Servicio</th>
-                <th scope="col">Barrio</th>
-                <th scope="col">Puntuación</th>
-                <th scope="col">Perfil</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                var imgUrl = "https://picsum.photos/200";
-
-                @foreach (var item in Model)
-                {
-                    imgUrl = imgUrl + "?";
-                    <tr>
-                        <td><image src="@imgUrl" alt="foto_perfil" size=""></image></td>
-                        <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Servicio)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Barrio)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Puntuacion)</td>
-                        <td><a href="/Profesionales/Details/@item.Id">Ir a perfil</a></td>
-                    </tr>
-                }
-
-            }
-
-
-
-        </tbody>
-    </table>
-
-</div>
 
 @section Scripts {
+
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+            },
+            methods: {
+            }
+        });
+    </script>
 }
 
-<style>
 
+<div class="body">
+    <div class="container-fluid">
+        <div class="main-body">
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="main-breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Lista de Profesionales
+                    </li>
+                </ol>
+            </nav>
+
+            <form id="buscador" action="/Profesionales/Buscador" method="get">
+
+                <div class="formulario">
+
+                    <div class="form-group mb-2">
+                        <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Nombre">
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <select class="form-control" name="servicio" id="servicio">
+                            <option disable selected>Servicio</option>
+                            @{
+                                var i = 0;
+                                @foreach (Servicio item in Enum.GetValues(typeof(Servicio)))
+                                {
+                                    i++;
+                                    <option value="@i">@item</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <select class="form-control" name="barrio" id="barrio">
+                            <option disable selected>Barrio</option>
+                            @{
+                                var j = 0;
+                                @foreach (Barrio item in Enum.GetValues(typeof(Barrio)))
+                                {
+                                    j++;
+                                    <option value="@j">@item</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+
+                    <div class="form-group mb-2">
+                        <select class="form-control" name="puntuacion" id="puntuacion">
+                            <option disable selected>Puntuación</option>
+                            @{
+                                var l = 0;
+                                @foreach (Puntuacion item in Enum.GetValues(typeof(Puntuacion)))
+                                {
+                                    l++;
+                                    <option value="@l">@item</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                    <button type="submit" class="form-group btn btn-primary mb-2">Buscar</button>
+
+                </div>
+
+            </form>
+
+            <div class="container-fluid">
+                @{
+                    var imgP = "https://picsum.photos/200";
+
+
+                    <div id="contenedor" class="container align-items-lg-center">
+                        <div class="row">
+                            @foreach (var item in Model)
+                            {
+                                imgP = imgP + "?";
+                                <!-- Single Advisor-->
+                                <div id="app" class="col-12 col-sm-6 col-lg-3">
+                                    <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                                        <!-- Team Thumb-->
+                                        <div class="advisor_thumb">
+
+                                            <img src="@imgP" alt="Alternate Text" />
+                                            <!-- Social Info-->
+                                            <div class="social-info"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a></div>
+                                        </div>
+                                        <!-- Team Details-->
+                                        <div class="single_advisor_details_info">
+                                            <h6>@Html.DisplayFor(modelItem => item.Nombre)</h6>
+                                            <p class="designation">@Html.DisplayFor(modelItem => item.Servicio)</p>
+                                            <div class="d-flex">
+                                                @{ var puntuacion = (int)item.Puntuacion;}
+                                                <div v-for="index in @puntuacion" :key="index">
+                                                    <i style="font-size: 2rem; color: cornflowerblue" class="bi bi-star-fill"></i>
+                                                </div>
+                                            </div>
+                                            <a class="btn btn-outline-secondary" href="/Profesionales/Perfil/@item.Id">Ir a perfil</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<style>
+    /*-----------------CARTAS------------------*/
+    .body {
+        margin-top: 20px;
+        background: #eee;
+        min-height: max-content;
+    }
+
+    .single_advisor_profile {
+        position: relative;
+        margin-bottom: 50px;
+        -webkit-transition-duration: 500ms;
+        transition-duration: 500ms;
+        z-index: 1;
+        border-radius: 15px;
+        -webkit-box-shadow: 0 0.25rem 1rem 0 rgba(47, 91, 234, 0.125);
+        box-shadow: 0 0.25rem 1rem 0 rgba(47, 91, 234, 0.125);
+    }
+
+        .single_advisor_profile .advisor_thumb {
+            position: relative;
+            z-index: 1;
+            border-radius: 15px 15px 0 0;
+            margin: 0 auto;
+            padding: 30px 30px 0 30px;
+            background-color: #69beef;
+            overflow: hidden;
+        }
+
+            .single_advisor_profile .advisor_thumb::after {
+                -webkit-transition-duration: 500ms;
+                transition-duration: 500ms;
+                position: absolute;
+                width: 150%;
+                height: 80px;
+                bottom: -45px;
+                left: -25%;
+                content: "";
+                background-color: #ffffff;
+                -webkit-transform: rotate(-15deg);
+                transform: rotate(-15deg);
+            }
+
+            .single_advisor_profile .advisor_thumb .social-info {
+                position: absolute;
+                z-index: 1;
+                width: 100%;
+                bottom: 0;
+                right: 30px;
+                text-align: right;
+            }
+
+                .single_advisor_profile .advisor_thumb .social-info a {
+                    font-size: 14px;
+                    color: #020710;
+                    padding: 0 5px;
+                }
+
+                    .single_advisor_profile .advisor_thumb .social-info a:hover,
+                    .single_advisor_profile .advisor_thumb .social-info a:focus {
+                        color: #3f43fd;
+                    }
+
+                    .single_advisor_profile .advisor_thumb .social-info a:last-child {
+                        padding-right: 0;
+                    }
+
+        .single_advisor_profile .single_advisor_details_info {
+            position: relative;
+            z-index: 1;
+            padding: 30px;
+            text-align: right;
+            -webkit-transition-duration: 500ms;
+            transition-duration: 500ms;
+            border-radius: 0 0 15px 15px;
+            background-color: #ffffff;
+        }
+
+            .single_advisor_profile .single_advisor_details_info::after {
+                -webkit-transition-duration: 500ms;
+                transition-duration: 500ms;
+                position: absolute;
+                z-index: 1;
+                width: 50px;
+                height: 3px;
+                background-color: #f92732;
+                content: "";
+                top: 12px;
+                right: 30px;
+            }
+
+            .single_advisor_profile .single_advisor_details_info h6 {
+                margin-bottom: 0.25rem;
+                -webkit-transition-duration: 500ms;
+                transition-duration: 500ms;
+            }
+
+            .single_advisor_profile .single_advisor_details_info p {
+                -webkit-transition-duration: 500ms;
+                transition-duration: 500ms;
+                margin-bottom: 0;
+                font-size: 14px;
+            }
+
+        .single_advisor_profile:hover .advisor_thumb::after,
+        .single_advisor_profile:focus .advisor_thumb::after {
+            background-color: #f92732;
+        }
+
+        .single_advisor_profile:hover .advisor_thumb .social-info a,
+        .single_advisor_profile:focus .advisor_thumb .social-info a {
+            color: #ffffff;
+        }
+
+            .single_advisor_profile:hover .advisor_thumb .social-info a:hover,
+            .single_advisor_profile:hover .advisor_thumb .social-info a:focus,
+            .single_advisor_profile:focus .advisor_thumb .social-info a:hover,
+            .single_advisor_profile:focus .advisor_thumb .social-info a:focus {
+                color: #ffffff;
+            }
+
+        .single_advisor_profile:hover .single_advisor_details_info,
+        .single_advisor_profile:focus .single_advisor_details_info {
+            background-color: #f92732;
+        }
+
+            .single_advisor_profile:hover .single_advisor_details_info::after,
+            .single_advisor_profile:focus .single_advisor_details_info::after {
+                background-color: #ffffff;
+            }
+
+            .single_advisor_profile:hover .single_advisor_details_info h6,
+            .single_advisor_profile:focus .single_advisor_details_info h6 {
+                color: #ffffff;
+            }
+
+            .single_advisor_profile:hover .single_advisor_details_info p,
+            .single_advisor_profile:focus .single_advisor_details_info p {
+                color: #ffffff;
+            }
+    /*-------------FORMULARIO------------*/
     .formulario {
         display: flex;
         justify-content: center;
-         
+        width: 100%;
+        height: 100%;
+        margin-top: 10px;
+        padding: 30px 0;
     }
 
-    .formulario div {
-        padding: 0 10px;    
-    }
-
-    img {
-        border-radius: 50%;
-        height: 30px;
-        width: 30px;
-    }
+        .formulario div {
+            padding: 0 10px;
+        }
 </style>

@@ -4,49 +4,55 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<div class="contenedor">
+    <h1>Alta de profesionales</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Nombre" class="control-label"></label>
+                    <input asp-for="Nombre" class="form-control" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
 
-<h4>Profesional</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
-            </div>
+                <div class="form-group">
+                    <label asp-for="Servicio" class="control-label"></label>
+                    <select asp-for="Servicio" class="form-control" asp-items="Html.GetEnumSelectList<Servicio>()">
+                        <option selected="selected" value="">Please select</option>
+                    </select>
+                    <span asp-validation-for="Servicio" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Barrio" class="control-label"></label>
+                    <select asp-for="Barrio" class="form-control" asp-items="Html.GetEnumSelectList<Barrio>()">
+                        <option selected="selected" value="">Please select</option>
+                    </select>
+                    <span asp-validation-for="Barrio" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Puntuacion" class="control-label"></label>
+                    <input asp-for="Puntuacion" class="form-control" />
+                    <span asp-validation-for="Puntuacion" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
 
-            <div class="form-group">
-                <label asp-for="Servicio" class="control-label"></label>
-                <select asp-for="Servicio" class="form-control" asp-items="Html.GetEnumSelectList<Servicio>()">
-                    <option selected="selected" value="">Please select</option>
-                </select>
-                <span asp-validation-for="Servicio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Barrio" class="control-label"></label>
-                <select asp-for="Barrio" class="form-control" asp-items="Html.GetEnumSelectList<Barrio>()">
-                    <option selected="selected" value="">Please select</option>
-                </select>
-                <span asp-validation-for="Barrio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Puntuacion" class="control-label"></label>
-                <input asp-for="Puntuacion" class="form-control" />
-                <span asp-validation-for="Puntuacion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    <div>
+        <a asp-action="Index">Back to List</a>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<style>
+    .contenedor {
+        justify-content: center;
+        align-content: center;
+    }
+</style>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

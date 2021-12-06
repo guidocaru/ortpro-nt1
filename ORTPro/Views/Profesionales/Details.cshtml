@@ -4,7 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
-<div>
+<div class="detalles">
     <h1>@Html.DisplayNameFor(model => model.Nombre)</h1>
 
 
@@ -42,7 +42,11 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-<style scoped>
+<style>
+    .detalles {
+        width: 100%;
+    }
+
     img {
         border-radius: 50%;
     }

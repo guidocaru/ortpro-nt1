@@ -1,53 +1,138 @@
 ﻿@model IEnumerable<ORTPro.Models.Profesional>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Dashboard Adm";
 }
 
-<h1>Index</h1>
+<div class="container-fluid justify-content-center">
+    <h1>Panel de control</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Puntuacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Servicio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Barrio)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Puntuacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Servicio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Barrio)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <section class="sectionProveedorIndex">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12 margin-top-40" align="center">
+                    <a asp-action="Create" class="btn-register">
+                        Crear perfil de profesional
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="dashboard">
+
+        @{ var i = 0;
+            @foreach (Servicio item in Enum.GetValues(typeof(Servicio)))
+            {
+                i++;
+            }
+
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="https://media.istockphoto.com/photos/aerial-view-of-crowd-connected-by-lines-picture-id1180187740?k=20&m=1180187740&s=612x612&w=0&h=s5vqexDzwt8irE-SC1wLWUUDompG9ehBDPrGTe5SsSU=" alt="servicios">
+                <div class="card-body">
+                    <b class="card-text">@i servicios disponibles</b>
+                </div>
+            </div> i = 0;
+            @foreach (Barrio item in Enum.GetValues(typeof(Barrio)))
+            {
+                i++;
+            }
+
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="https://media.istockphoto.com/photos/city-map-picture-id1131944083?k=20&m=1131944083&s=612x612&w=0&h=Le80cCcIVLS-gTOLOcyB5r7teO195omS5vt_u5KT9Uc=" alt="servicios">
+                <div class="card-body">
+                    <b class="card-text">Cobertura en @i barrios</b>
+                </div>
+            </div> i = 0;
+            @foreach (var pro in Model)
+            {
+                i++;
+            } }
+
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="https://media.istockphoto.com/photos/smiling-confident-businesswoman-posing-with-arms-folded-picture-id1163294201?k=20&m=1163294201&s=612x612&w=0&h=3M9Ha3KbrWqNnJARtJcXvt_B6rx9bZdEvkWvQbxK2hE=" alt="profesionales">
+            <div class="card-body">
+                <b class="card-text">@i profesionales registrados</b>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container-fluid">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Puntuacion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Servicio)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Barrio)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            @{
+                var imgP = "https://picsum.photos/200"; }
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    imgP = imgP + "?";
+                    <tr class="tablas">
+                        <td>
+                            <img class="imgTb" src="@imgP" alt="Alternate Text" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Puntuacion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Servicio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Barrio)
+                        </td>
+                        <td class=" opciones">
+                            <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                            <a class="btn btn-info" asp-action="Perfil" asp-route-id="@item.Id">Perfil</a> |
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<style>
+    .imgTb {
+        border-radius: 15px;
+        height: 30px;
+        width: 30px;
+    }
+
+    #dashboard {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: 3%;
+    }
+
+    .card {
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        margin-right: 5%;
+        margin-left: 5%;
+    }
+</style>

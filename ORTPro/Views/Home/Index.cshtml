@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "ORT-Pro";
 }
 @model ORTPro.Models.Servicio
 
@@ -20,66 +20,250 @@
                 </div>
             </div>
         </header>
-        <h2>¿Qué estás buscando?</h2>
-        <p>Probá nuestro buscador de profesionales</p>
-        <form id="buscador" action="/Profesionales/Buscador" method="get">
-
-    <div class="formulario">
-
-        <div class="form-group mb-2">
-            <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Nombre">
-        </div>
-
-        <div class="form-group mb-2">
-            <select class="custom-select mr-sm-2" name="servicio" id="servicio">
-                <option disable selected>Servicio</option>
-                @{
-                    var i = 0;
-                    @foreach (Servicio item in Enum.GetValues(typeof(Servicio)))
-                    {
-                        i++;
-                        <option value="@i">@item</option>
-                    }
-                }
-            </select>
-        </div>
-
-        <div class="form-group mb-2">
-            <select class="custom-select mr-sm-2" name="barrio" id="barrio">
-                <option disable selected>Barrio</option>
-                @{
-                    var j = 0;
-                    @foreach (Barrio item in Enum.GetValues(typeof(Barrio)))
-                    {
-                        j++;
-                        <option value="@j">@item</option>
-                    }
-                }
-            </select>
-        </div>
-
-
-        <div class="form-group mb-2">
-            <select class="custom-select mr-sm-2" name="puntuacion" id="puntuacion">
-                <option disable selected>Puntuación</option>
-                @{
-                    var l = 0;
-                    @foreach (Puntuacion item in Enum.GetValues(typeof(Puntuacion)))
-                    {
-                        l++;
-                        <option value="@l">@item</option>
-                    }
-                }
-            </select>
-        </div>
-
-        <button type="submit" class="form-group btn btn-primary mb-2">Buscar</button>
-
-    </div>
-
-</form>
     </div>
 </div>
+<section class="sectionInfoHome">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>
+                    ¿Qué es ORTPro?
+                </h2>
+                <h3>Profesionales y expertos online</h3>
+                <p align="justify">
+                    <b>ORTPro</b> es una plataforma que te conecta con los mejores profesionales y servicios de tu ciudad. También permite hacer crecer tu negocio y aumentar tu visibilidad como profesional ¡Publica tu perfil y ofrece tus servicios!
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>
+                ¿Qué estás buscando?
+            </h2>
+            <p align="justify">
+                Probá nuestro buscador de profesionales ¡La solucion a tus necesidades puede estar al alcance de tu mano!
+            </p>
+        </div>
+        <div class="col-md-12 margin-top-40 hiddenDesktop" align="center">
+            <form id="buscador" action="/Profesionales/Buscador" method="get">
+
+                <div class="formulario">
+                    <div class="form-group mb-2">
+                        <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Nombre">
+                    </div>
+                    <div class="form-group mb-2">
+                        <select class="form-control" name="servicio" id="servicio">
+                            <option disable selected>Servicio</option>
+                            @{
+                                var i = 0;
+                                @foreach (Servicio item in Enum.GetValues(typeof(Servicio)))
+                                {
+                                    i++;
+                                    <option value="@i">@item</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group mb-2">
+                        <select class="form-control" name="barrio" id="barrio">
+                            <option disable selected>Barrio</option>
+                            @{
+                                var j = 0;
+                                @foreach (Barrio item in Enum.GetValues(typeof(Barrio)))
+                                {
+                                    j++;
+                                    <option value="@j">@item</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group mb-2">
+                        <select class="form-control" name="puntuacion" id="puntuacion">
+                            <option disable selected>Puntuación</option>
+                            @{
+                                var l = 0;
+                                @foreach (Puntuacion item in Enum.GetValues(typeof(Puntuacion)))
+                                {
+                                    l++;
+                                    <option value="@l">@l</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-register">BUSCAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--Fin-S1-->
+<!--S2-->
+<section class="sectionOptionsHome">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h5>
+                    Con ORTPro es rapido y sencillo
+                </h5>
+            </div>
+            <div class="col-md-4" align="center">
+                <img src="https://tupro.com/images/reputacion.png" alt="">
+                <h4>
+                    Profesionales calificados
+                </h4>
+            </div>
+            <div class="col-md-4" align="center">
+                <img src="https://tupro.com/images/cotizaciones.png" alt="">
+                <h4>
+                    Variedad de ofertas
+                </h4>
+            </div>
+            <div class="col-md-4" align="center">
+                <img src="https://tupro.com/images/solicita.png" alt="">
+                <h4>
+                    Sin intermediarios
+                </h4>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="sectionFooterHome">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" align="center">
+                <h5>
+                    Unite como profesional y obtené beneficios
+                </h5>
+
+                <div class="cont-display2" style="margin-top: 50px">
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="https://tupro.com/images/ben2.png">
+                            </div>
+                            <div class="col-8">
+                                <p>
+                                    Perfil y visibilidad de tu negocio
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="https://tupro.com/images/ben1.png">
+                            </div>
+                            <div class="col-8">
+                                <p>
+                                    Sin comisiones
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="https://tupro.com/images/ben5.png">
+                            </div>
+                            <div class="col-8">
+                                <p>
+                                    Generá nuevos clientes
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="https://tupro.com/images/ben6.png">
+                            </div>
+                            <div class="col-8">
+                                <p>
+                                    Encuentra trabajos disponibles
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="https://tupro.com/images/ben3.png">
+                            </div>
+                            <div class="col-8">
+                                <p>
+                                    Consolidá tu reputación en línea
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="https://tupro.com/images/ben4.png">
+                            </div>
+                            <div class="col-8">
+                                <p>
+                                    Manejá tus tiempos
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="contactanos">
+    <form action="/" method="post">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="bg-secondary text-white text-center py-2">
+                        <h4><i class="fa fa-envelope"></i> Contactanos</h4>
+                    </div>
+                    <div class="form-group mt-1">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-user text-secondary"></i></div>
+                            </div>
+                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre y Apellido" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-envelope text-secondary"></i></div>
+                            </div>
+                            <input type="email" class="form-control" id="nombre" name="email" placeholder="ejemplo@gmail.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fa fa-comment text-secondary"></i></div>
+                            </div>
+                            <textarea class="form-control" placeholder="Envianos tu Mensaje" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <input type="submit" value="Enviar" class="btn btn-secondary btn-block rounded-0 py-2">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</section>
+
+
 
 @section scripts{
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
@@ -117,20 +301,13 @@
             opacity: 0.5;
         }
 
-   
     .formulario {
         display: flex;
         justify-content: center;
     }
 
-    .formulario div {
-        padding: 0 10px;
-    }
-
-    img {
-        border-radius: 50%;
-        height: 30px;
-        width: 30px;
-    }
+        .formulario div {
+            padding: 0 10px;
+        }
 
 </style>
